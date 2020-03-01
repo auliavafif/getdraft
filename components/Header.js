@@ -7,7 +7,7 @@ export default function Header() {
         <Link href="/">
           <img className="nav-logo" src="/img/logo.png" alt="logo" />
         </Link>
-        <Link href="/browse">
+        <Link href="/">
           <span className="pull-right nav-link">Browse</span>
         </Link>
       </nav>

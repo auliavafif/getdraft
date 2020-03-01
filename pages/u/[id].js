@@ -1,19 +1,37 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import UserProfile from '../../components/UserProfile';
+import { selectUser } from '../../store/selectors/usersSelectors';
+import { updateSelectedUser } from '../../store/actions/usersActions';
 
-const userCardProps = {
-  userName: 'Mark Robert',
-  userLocation: 'Jakarta',
-};
+const User = ({ updateSelectedUser, selectedUser }) => {
+  useEffect(() => {
+    const hrefArray = window.location.href.split('/');
+    const path = hrefArray[hrefArray.length - 1];
+    updateSelectedUser(path);
+  }, []);
 
-export default function User() {
   return (
     <Layout>
       <div className="container">
         <div className="row">
-          <div className="col-md-6 col-centered"><UserProfile {...userCardProps} /></div>
+          <div className="col-md-6 col-centered">{selectedUser ? <UserProfile user={selectedUser} /> : <div className="text-center user-not-found">Person not found</div>}</div>
         </div>
       </div>
     </Layout>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  selectedUser: selectUser(state),
+  userName: state.users.selectedUser,
+});
+
+const mapDispatchToProps = {
+  updateSelectedUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

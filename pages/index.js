@@ -9,9 +9,11 @@ import Layout from '../components/Layout';
 import Search from '../components/Search';
 import UserCard from '../components/UserCard';
 import {
-  getUsersRequest, getUsersSuccess, getUsersFailure, updateSearchKeyword, updateSearchLocation, updateSearchAge,
+  getUsersRequest, getUsersSuccess, getUsersFailure,
+  updateSearchKeyword, updateSearchLocation, updateSearchAge,
 } from '../store/actions/usersActions';
 import UserCardLoader from '../components/UserCardLoader';
+import { selectFilteredUsersList } from '../store/selectors/usersSelectors';
 
 const UserCardLoaders = () => {
   const loaders = [];
@@ -54,7 +56,6 @@ const Index = ({
   return (
     <Layout>
       <Search {...searchProps} />
-      {JSON.stringify({ age, location, keyword }, null, 1)}
       <div className="container">
         <div className="row">
           {usersList.length === 0
@@ -81,7 +82,7 @@ const Index = ({
 
 const mapStateToProps = (state) => ({
   page: state.users.page,
-  usersList: state.users.list,
+  usersList: selectFilteredUsersList(state),
   loading: state.loading,
   keyword: state.users.keyword,
   location: state.users.location,

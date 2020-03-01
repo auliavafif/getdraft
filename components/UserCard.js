@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const UserCard = ({ name, location, picture }) => (
-  <Link href="/u/mark+robert">
+  <Link href={`/u/${name.toLowerCase()}`}>
     <div className="user-card">
       <img className="user-card__photo" src={picture} alt={`${name}`} />
       <div className="user-card__name">{name}</div>

@@ -4,8 +4,8 @@ import Dropdown from 'react-dropdown';
 
 const ages = [
   { value: 'ALL', label: 'All Ages' },
-  { value: 'UNDER_30', label: '< 30' },
-  { value: '30 - 50', label: '30 - 50' },
+  { value: '30', label: '< 30' },
+  { value: '40', label: '30 - 50' },
   { value: '50', label: '50 >' },
 ];
 
@@ -61,12 +61,13 @@ const Search = (
               border: 0px;
           }
           .search-filter {
-              padding: 10px 0px;
+              padding: 5px 0px 10px;
               border: 1px solid #e6e6e6;
               margin-bottom: 20px
           }
           label{
-              color: #a6a9ac
+              color: #a6a9ac;
+              margin-top: 5px;
           }
         `
       }
@@ -74,11 +75,15 @@ const Search = (
   </div>
 );
 
-// const { func } = PropTypes;
+const { func, string } = PropTypes;
 
-// Search.propTypes = {
-//   changeAges: string.isRequired,
-//   userLocation: string.isRequired,
-// };
+Search.propTypes = {
+  updateSearchKeyword: func.isRequired,
+  updateSearchLocation: func.isRequired,
+  updateSearchAge: func.isRequired,
+  keyword: string.isRequired,
+  location: string.isRequired,
+  age: string.isRequired,
+};
 
 export default Search;

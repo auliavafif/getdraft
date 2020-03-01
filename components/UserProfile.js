@@ -1,20 +1,21 @@
-import Link from 'next/link';
+/* eslint-disable react/forbid-prop-types */
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
-const UserProfile = ({ userName, userLocation }) => (
-  <Link href="/user">
+const UserProfile = ({ user }) => (
+  <div>
     <div className="user-profile">
-      <img className="user-profile__photo" src="/img/dummy-photo.jpg" alt="user" />
-      <div className="user-profile__name">{userName}</div>
+      <img className="user-profile__photo" src={user.picture.medium} alt={`${user.name.first} ${user.name.last}`} />
+      <div className="user-profile__name">{`${user.name.first} ${user.name.last}`}</div>
       <div className="user-profile__location">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6 0C3.60363 0 1.65405 1.94958 1.65405 4.34592C1.65405 7.31986 5.54325 11.6858 5.70883 11.8702C5.86437 12.0434 6.13591 12.0431 6.29116 11.8702C6.45675 11.6858 10.3459 7.31986 10.3459 4.34592C10.3459 1.94958 8.39634 0 6 0ZM6 6.53248C4.79433 6.53248 3.81347 5.55159 3.81347 4.34592C3.81347 3.14025 4.79435 2.15939 6 2.15939C7.20565 2.15939 8.18651 3.14027 8.18651 4.34595C8.18651 5.55162 7.20565 6.53248 6 6.53248Z" fill="#BCBEC1" />
         </svg>
-        {userLocation}
+        {`${user.location.city}, ${user.location.country}`}
       </div>
       <div className="user-profile-button">
-        <a href="mailto:auliavafif@gmail.com" className="btn btn--primary">Send Email</a>
-        <a href="tel:085643366776" className="btn btn--outline">Call Phone</a>
+        <a href={`mailto:${user.email}`} className="btn btn--primary">Send Email</a>
+        <a href={`tel:${user.phone}`} className="btn btn--outline">Call Phone</a>
       </div>
       <div className="user-profile-detail">
         <div className="user-profile-detail__description">
@@ -22,25 +23,21 @@ const UserProfile = ({ userName, userLocation }) => (
             Description
           </div>
           {`
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-          The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of
-          Ciceros De Finibus Bonorum et Malorum for use in a type specimen book.
+         I'm a sales rep dedicated to helping local Oklahoma City services businesses grow their customer base and decrease customer churn. I have six years of experience in local sales and I've consistently met and exceeded my quota throughout my career. Within the last year, I've topped our leaderboard six out of 10 months. On average, I close business 10% faster than my peers.
           `}
         </div>
         <div className="user-profile-detail__description">
           <div className="user-profile-detail__label">
             Date of Birth
           </div>
-          {`
-            20 November 2020
-          `}
+          {moment(user.dob.date).format('DD MMMM YYYY')}
         </div>
         <div className="user-profile-detail__description">
           <div className="user-profile-detail__label">
             Address
           </div>
           {`
-          9278 New Road, Kilcoole, Waterhood
+          ${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}, ${user.location.postcode}
           `}
         </div>
       </div>
@@ -85,14 +82,13 @@ const UserProfile = ({ userName, userLocation }) => (
      `}
       </style>
     </div>
-  </Link>
+  </div>
 );
 
-const { string } = PropTypes;
+const { object } = PropTypes;
 
 UserProfile.propTypes = {
-  userName: string.isRequired,
-  userLocation: string.isRequired,
+  user: object.isRequired,
 };
 
 export default UserProfile;

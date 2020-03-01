@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  GET_USERS_SUCCESS, GET_USERS_FAILURE, UPDATE_SEARCH_KEYWORD, UPDATE_SEARCH_LOCATION, UPDATE_SEARCH_AGE,
+  GET_USERS_SUCCESS, GET_USERS_FAILURE, UPDATE_SEARCH_KEYWORD,
+  UPDATE_SEARCH_LOCATION, UPDATE_SEARCH_AGE, UPDATE_SELECTED_USER,
 } from '../constants/usersConstants';
 
 
 const usersReducer = createReducer({
-  page: 0, list: [], error: {}, keyword: '', age: 'ALL', location: 'ALL',
+  page: 0, list: [], error: {}, keyword: '', age: 'ALL', location: 'ALL', selectedUser: '',
 }, {
   [GET_USERS_SUCCESS]: (state, action) => {
     const usersList = action.payload.results;
@@ -27,6 +28,9 @@ const usersReducer = createReducer({
   },
   [UPDATE_SEARCH_AGE]: (state, action) => {
     state.age = action.payload;
+  },
+  [UPDATE_SELECTED_USER]: (state, action) => {
+    state.selectedUser = action.payload;
   },
 });
 
