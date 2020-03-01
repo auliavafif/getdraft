@@ -1,18 +1,36 @@
 /* eslint-disable no-alert */
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import Dropdown from 'react-dropdown';
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+const ages = [
+  { value: 'ALL', label: 'All Ages' },
+  { value: 'UNDER_30', label: '< 30' },
+  { value: '30 - 50', label: '30 - 50' },
+  { value: '50', label: '50 >' },
 ];
 
+const locations = [
+  { value: 'ALL', label: 'All Locations' },
+  { value: 'Australia', label: 'Australia' },
+  { value: 'United States', label: 'USA' },
+  { value: 'France', label: 'France' },
+  { value: 'Brazil', label: 'Brazil' },
+  { value: 'Canada', label: 'Canada' },
+];
 
-const Search = () => (
+const Search = (
+  {
+    updateSearchKeyword,
+    updateSearchLocation,
+    updateSearchAge,
+    keyword,
+    location,
+    age,
+  },
+) => (
   <div>
     <form onSubmit={() => alert('aha')}>
-      <input className="search-input" type="text" placeholder="🔍 I’m looking for" />
+      <input className="search-input" type="text" value={keyword} onChange={(e) => updateSearchKeyword(e.target.value)} placeholder="🔍 I’m looking for" />
     </form>
     <div className="search-filter">
       <div className="container">
@@ -20,12 +38,12 @@ const Search = () => (
           <div className="col-md-6 col-centered">
             <div className="row">
               <div className="col-md-6">
-                <label>Location</label>
-                <Select options={options} />
+                <label>Age</label>
+                <Dropdown options={ages} value={age} onChange={(e) => updateSearchAge(e.value)} placeholder="Select an option" />
               </div>
               <div className="col-md-6">
-                <label>Age</label>
-                <Select options={options} />
+                <label>Location</label>
+                <Dropdown options={locations} value={location} onChange={(e) => updateSearchLocation(e.value)} placeholder="Select an option" />
               </div>
             </div>
           </div>
@@ -59,7 +77,7 @@ const Search = () => (
 // const { func } = PropTypes;
 
 // Search.propTypes = {
-//   userName: string.isRequired,
+//   changeAges: string.isRequired,
 //   userLocation: string.isRequired,
 // };
 
