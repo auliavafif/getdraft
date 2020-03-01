@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-less": "^1.0.1",
+    "less": "^3.11.1",
     "next": "^9.2.2",
-    "node-sass": "^4.13.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-select": "^3.0.8"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
