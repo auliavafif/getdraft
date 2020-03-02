@@ -2,7 +2,7 @@
 
 ## About
 
-GetDraft is a contact list app where you can browse and search random people. It very simple project and there are no any authentication to access the app. Rest assured, all the people data used in this project is from https://randomuser.me/ so no person privacy violated. 😄
+GetDraft is a contact list app where you can browse and search random people. It very simple project and there are no any authentication to access the app. Rest assured, all the people data used in this project are from https://randomuser.me/ so no person privacy violated. 😄
 
 ## Running locally in development mode
 
