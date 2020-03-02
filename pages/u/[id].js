@@ -21,6 +21,15 @@ const User = ({ updateSelectedUser, selectedUser }) => {
           <div className="col-md-6 col-centered">{selectedUser ? <UserProfile user={selectedUser} /> : <div className="text-center user-not-found">Person not found</div>}</div>
         </div>
       </div>
+      <style jsx>
+        {
+          `
+            .user-not-found{
+              margin-top:40px
+            }
+          `
+        }
+      </style>
     </Layout>
   );
 };
